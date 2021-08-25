@@ -43,7 +43,13 @@
       </div>
     </div>
 
-</div>      
+</div> 
+<!-- ptransporter des elements  d'un div vers une autre -->
+<teleport to='#alert' v-if="wordDeleted">
+  <div class="alert alert-danger text-center">
+      <strong>Word deleted </strong>
+  </div>
+</teleport>     
 <img  class="logo" alt="Vue logo" src="./assets/logo.jpg" />
 
 </template>
@@ -63,6 +69,7 @@ export default {
   data() {
     return {
       titles:[],
+      wordDeleted:false,
       colors: [
              {  name: 'red' },
              {  name: 'yellow' },
@@ -95,6 +102,8 @@ export default {
     deleteWord(id){
       if(confirm('are you sure about deleting item')){
         this.titles.splice(id, 1);
+        this.wordDeleted = true;
+            setTimeout(() => { this.wordDeleted = false }, 3000)
       }
     },
     //change div color when change select value
